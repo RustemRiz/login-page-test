@@ -6,8 +6,6 @@ export default class Backend {
     constructor() {
         if (!instance) {
             instance = this;
-            // let token = localStorage.getItem('authToken');
-            // this.setAuthToken(token);
         }
         return instance;
     }
@@ -21,7 +19,6 @@ export default class Backend {
                 resolve(token);
             })
             .catch(error => {
-                console.log(error);
                 reject(error);
             })
         });
@@ -29,17 +26,7 @@ export default class Backend {
 
     logout() {
         localStorage.removeItem('authToken');
-        // this.setAuthToken(null);
     }
-
-    //С авторизацией сервер возвращает ошибку CORS
-    // setAuthToken(token) {
-    //     if (token) {
-    //         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    //     } else {
-    //         delete axios.defaults.headers.common['Authorization'];
-    //     }
-    // }
 
     //Имитация ответа сервера
     authMock(data) {
@@ -56,7 +43,6 @@ export default class Backend {
     }
 
     getExchangeRate() {
-        // if (axios.defaults.headers.common['Authorization']) {
         if (localStorage.authToken) {
             return axios.get('https://www.cbr-xml-daily.ru/daily_json.js');
         } else {
@@ -67,6 +53,5 @@ export default class Backend {
         }
     }
 
-    
 }
 

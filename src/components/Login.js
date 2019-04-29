@@ -27,13 +27,11 @@ export default class Login extends React.Component {
         let { login, password } = this.state;
         backend.login({ login, password })
             .then(response => {
-                console.log(response);
                 this.props.history.push('/');
             })
             .catch(error => {
                 alert(error);
             })
-
     }
 
     render() {
@@ -42,14 +40,14 @@ export default class Login extends React.Component {
             <div className="login">
                 <form onSubmit={this.onSubmit}
                 >
-                    <p></p>
                     <input 
                         type="text" 
                         value={login} 
                         onChange={this.setLogin} 
                         placeholder="Login"
                         pattern="[a-z0-9]{6,}"
-                        title="Username should only contain lowercase letters and digits, and includes min 6 symbols."                    />
+                        title="Login can only contain lowercase letters and digits, and must be at least 6 characters."                    
+                    />
                     <input 
                         type="password" 
                         value={password} 
